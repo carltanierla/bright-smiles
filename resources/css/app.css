@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    /* Font Families */
+    --font-sans: "Inter", "sans-serif";
+    --font-display: "Plus Jakarta Sans", "sans-serif";
+
+    /* Colors */
+    --color-primary: #0ea5e9;
+    --color-dark: #0f172a;
+}
