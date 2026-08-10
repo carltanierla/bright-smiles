@@ -1,30 +1,20 @@
-# Step 1: Build the Inertia Vue assets
-FROM node:20 AS frontend-builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-
-# Step 2: Set up the PHP / Nginx production environment
 FROM php:8.3-fpm-alpine
 
-# Install system extensions and PHP extensions needed for Laravel
+# Install system utilities and production PHP extensions
 RUN apk add --no-cache nginx supervisor mariadb-client postgresql-dev libpng-dev libjpeg-turbo-dev freetype-dev zip libzip-dev
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql gd zip bcmath
 
 WORKDIR /var/www/html
+
+# Copy the entire workspace (including your pre-compiled public/build folder)
 COPY . .
 
-# Copy compiled Vue assets from frontend-builder stage
-COPY --from=frontend-builder /app/public/build ./public/build
-
-# Install Composer packages
+# Install Composer production packages
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Set up permissions for Laravel storage
+# Set permissions for Laravel
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Copy Nginx config
