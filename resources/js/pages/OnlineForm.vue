@@ -79,7 +79,7 @@
                         </span>
                         {{ stepName }}
                         <span v-if="index < stepNames.length - 1" class="ml-2"
-                            >→</span
+                        >→</span
                         >
                     </div>
                 </div>
@@ -108,13 +108,14 @@
                                         <div>
                                             <label
                                                 class="mb-1 block text-sm font-semibold text-slate-700"
-                                                >Patient Status (Office use
+                                            >Patient Status (Office use
                                                 only)</label
                                             >
                                             <input
                                                 type="text"
                                                 v-model="formData.patientStatus"
                                                 class="v-input"
+                                                maxlength="255"
                                             />
                                         </div>
                                     </div>
@@ -125,34 +126,40 @@
                                         <div>
                                             <label
                                                 class="mb-1 block text-sm font-semibold text-slate-700"
-                                                >First Name (as it appears on
+                                            >First Name (as it appears on
                                                 Birth Certificate/Driver's
                                                 License)
                                                 <span class="text-red-500"
-                                                    >*</span
+                                                >*</span
                                                 ></label
                                             >
                                             <input
                                                 type="text"
                                                 v-model="formData.firstName"
                                                 class="v-input"
+                                                :class="{'border-red-500 focus:border-red-500 focus:ring-red-500': errors.firstName}"
+                                                maxlength="255"
                                             />
+                                            <span v-if="errors.firstName" class="text-xs text-red-500 mt-1 block">{{ errors.firstName }}</span>
                                         </div>
                                         <div>
                                             <label
                                                 class="mb-1 block text-sm font-semibold text-slate-700"
-                                                >Last Name (as it appears on
+                                            >Last Name (as it appears on
                                                 Birth Certificate/Driver's
                                                 License)
                                                 <span class="text-red-500"
-                                                    >*</span
+                                                >*</span
                                                 ></label
                                             >
                                             <input
                                                 type="text"
                                                 v-model="formData.lastName"
                                                 class="v-input"
+                                                :class="{'border-red-500 focus:border-red-500 focus:ring-red-500': errors.lastName}"
+                                                maxlength="255"
                                             />
+                                            <span v-if="errors.lastName" class="text-xs text-red-500 mt-1 block">{{ errors.lastName }}</span>
                                         </div>
                                     </div>
 
@@ -162,9 +169,9 @@
                                         <div>
                                             <label
                                                 class="mb-2 block text-sm font-semibold text-slate-700"
-                                                >Sex
+                                            >Sex
                                                 <span class="text-red-500"
-                                                    >*</span
+                                                >*</span
                                                 ></label
                                             >
                                             <div class="flex gap-4">
@@ -191,25 +198,28 @@
                                                     Female
                                                 </label>
                                             </div>
+                                            <span v-if="errors.sex" class="text-xs text-red-500 mt-1 block">{{ errors.sex }}</span>
                                         </div>
                                         <div>
                                             <label
                                                 class="mb-1 block text-sm font-semibold text-slate-700"
-                                                >Birthdate
+                                            >Birthdate
                                                 <span class="text-red-500"
-                                                    >*</span
+                                                >*</span
                                                 ></label
                                             >
                                             <input
                                                 type="date"
                                                 v-model="formData.dob"
                                                 class="v-input"
+                                                :class="{'border-red-500 focus:border-red-500 focus:ring-red-500': errors.dob}"
                                             />
+                                            <span v-if="errors.dob" class="text-xs text-red-500 mt-1 block">{{ errors.dob }}</span>
                                         </div>
                                         <div>
                                             <label
                                                 class="mb-2 block text-sm font-semibold text-slate-700"
-                                                >Patient is Financially
+                                            >Patient is Financially
                                                 Responsible for the
                                                 Account</label
                                             >
@@ -262,31 +272,34 @@
                                                 Patient's Mobile Number (If
                                                 applicable)
                                                 <span class="text-red-500"
-                                                    >*</span
+                                                >*</span
                                                 >
                                             </label>
                                             <input
                                                 type="text"
                                                 v-model="formData.mobileNumber"
                                                 class="v-input"
+                                                :class="{'border-red-500 focus:border-red-500 focus:ring-red-500': errors.mobileNumber}"
                                                 placeholder="0400 000 000"
+                                                maxlength="20"
                                             />
+                                            <span v-if="errors.mobileNumber" class="text-xs text-red-500 mt-1 block">{{ errors.mobileNumber }}</span>
                                         </div>
                                         <div>
                                             <label
                                                 class="mb-1 block text-sm font-semibold text-slate-700"
                                             >
                                                 Patient's Email (If applicable)
-                                                <span class="text-red-500"
-                                                    >*</span
-                                                >
                                             </label>
                                             <input
                                                 type="email"
                                                 v-model="formData.email"
                                                 class="v-input"
+                                                :class="{'border-red-500 focus:border-red-500 focus:ring-red-500': errors.email}"
                                                 placeholder="patient@email.com"
+                                                maxlength="255"
                                             />
+                                            <span v-if="errors.email" class="text-xs text-red-500 mt-1 block">{{ errors.email }}</span>
                                         </div>
                                     </div>
 
@@ -300,9 +313,9 @@
                                         >
                                             <label
                                                 class="mb-2 block text-sm font-semibold text-slate-700"
-                                                >Primary Mailing Address
+                                            >Primary Mailing Address
                                                 <span class="text-red-500"
-                                                    >*</span
+                                                >*</span
                                                 >
                                             </label>
                                             <input
@@ -313,6 +326,7 @@
                                                 "
                                                 class="v-input mb-3"
                                                 placeholder="Address Line 1"
+                                                maxlength="255"
                                             />
                                             <input
                                                 type="text"
@@ -322,6 +336,7 @@
                                                 "
                                                 class="v-input mb-3"
                                                 placeholder="Address Line 2"
+                                                maxlength="255"
                                             />
                                             <div class="grid grid-cols-2 gap-4">
                                                 <input
@@ -332,6 +347,7 @@
                                                     "
                                                     class="v-input"
                                                     placeholder="Suburb"
+                                                    maxlength="255"
                                                 />
                                                 <input
                                                     type="text"
@@ -341,6 +357,7 @@
                                                     "
                                                     class="v-input"
                                                     placeholder="Post Code"
+                                                    maxlength="20"
                                                 />
                                             </div>
                                         </div>
@@ -349,7 +366,7 @@
                                     <div class="mb-5">
                                         <label
                                             class="mb-1 block text-sm font-semibold text-slate-700"
-                                            >Who do you currently see for your
+                                        >Who do you currently see for your
                                             General Dentist Check up?</label
                                         >
                                         <input
@@ -357,6 +374,7 @@
                                             v-model="formData.generalDentist"
                                             class="v-input"
                                             placeholder="Dentist Name"
+                                            maxlength="255"
                                         />
                                     </div>
 
@@ -372,9 +390,9 @@
                                             <div>
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Familial Status
+                                                >Familial Status
                                                     <span class="text-red-500"
-                                                        >*</span
+                                                    >*</span
                                                     ></label
                                                 >
                                                 <select
@@ -435,7 +453,7 @@
                                                 <div>
                                                     <label
                                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                                        >Relationship to
+                                                    >Relationship to
                                                         Patient</label
                                                     >
                                                     <input
@@ -447,6 +465,7 @@
                                                         "
                                                         class="v-input bg-white"
                                                         placeholder="e.g. Mother, Father, Guardian"
+                                                        maxlength="255"
                                                     />
                                                 </div>
                                             </div>
@@ -457,10 +476,10 @@
                                                 <div>
                                                     <label
                                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                                        >First Name
+                                                    >First Name
                                                         <span
                                                             class="text-red-500"
-                                                            >*</span
+                                                        >*</span
                                                         ></label
                                                     >
                                                     <input
@@ -471,15 +490,16 @@
                                                                 .firstName
                                                         "
                                                         class="v-input bg-white"
+                                                        maxlength="255"
                                                     />
                                                 </div>
                                                 <div>
                                                     <label
                                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                                        >Last Name
+                                                    >Last Name
                                                         <span
                                                             class="text-red-500"
-                                                            >*</span
+                                                        >*</span
                                                         ></label
                                                     >
                                                     <input
@@ -490,6 +510,7 @@
                                                                 .lastName
                                                         "
                                                         class="v-input bg-white"
+                                                        maxlength="255"
                                                     />
                                                 </div>
                                             </div>
@@ -500,10 +521,10 @@
                                                 <div>
                                                     <label
                                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                                        >Mobile Phone
+                                                    >Mobile Phone
                                                         <span
                                                             class="text-red-500"
-                                                            >*</span
+                                                        >*</span
                                                         ></label
                                                     >
                                                     <input
@@ -515,12 +536,13 @@
                                                         "
                                                         class="v-input bg-white"
                                                         placeholder="0400 000 000"
+                                                        maxlength="20"
                                                     />
                                                 </div>
                                                 <div>
                                                     <label
                                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                                        >Secondary Phone</label
+                                                    >Secondary Phone</label
                                                     >
                                                     <input
                                                         type="text"
@@ -530,15 +552,16 @@
                                                                 .secondaryPhone
                                                         "
                                                         class="v-input bg-white"
+                                                        maxlength="20"
                                                     />
                                                 </div>
                                                 <div>
                                                     <label
                                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                                        >Email Address
+                                                    >Email Address
                                                         <span
                                                             class="text-red-500"
-                                                            >*</span
+                                                        >*</span
                                                         ></label
                                                     >
                                                     <input
@@ -549,6 +572,7 @@
                                                                 .email
                                                         "
                                                         class="v-input bg-white"
+                                                        maxlength="255"
                                                     />
                                                 </div>
                                             </div>
@@ -556,7 +580,7 @@
                                             <div>
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Mailing Address</label
+                                                >Mailing Address</label
                                                 >
                                                 <input
                                                     type="text"
@@ -566,6 +590,7 @@
                                                     "
                                                     class="v-input mb-3 bg-white"
                                                     placeholder="Address Line 1"
+                                                    maxlength="255"
                                                 />
                                                 <input
                                                     type="text"
@@ -575,6 +600,7 @@
                                                     "
                                                     class="v-input mb-3 bg-white"
                                                     placeholder="Address Line 2"
+                                                    maxlength="255"
                                                 />
                                                 <div
                                                     class="grid grid-cols-2 gap-4"
@@ -588,6 +614,7 @@
                                                         "
                                                         class="v-input bg-white"
                                                         placeholder="Suburb"
+                                                        maxlength="255"
                                                     />
                                                     <input
                                                         type="text"
@@ -599,6 +626,7 @@
                                                         "
                                                         class="v-input bg-white"
                                                         placeholder="Post Code"
+                                                        maxlength="20"
                                                     />
                                                 </div>
                                             </div>
@@ -630,7 +658,7 @@
                                             <div>
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Relationship to
+                                                >Relationship to
                                                     Patient</label
                                                 >
                                                 <input
@@ -641,6 +669,7 @@
                                                     "
                                                     class="v-input bg-white"
                                                     placeholder="e.g. Father, Step-parent"
+                                                    maxlength="255"
                                                 />
                                             </div>
                                         </div>
@@ -651,7 +680,7 @@
                                             <div>
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >First Name</label
+                                                >First Name</label
                                                 >
                                                 <input
                                                     type="text"
@@ -660,12 +689,13 @@
                                                             .firstName
                                                     "
                                                     class="v-input bg-white"
+                                                    maxlength="255"
                                                 />
                                             </div>
                                             <div>
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Last Name</label
+                                                >Last Name</label
                                                 >
                                                 <input
                                                     type="text"
@@ -674,6 +704,7 @@
                                                             .lastName
                                                     "
                                                     class="v-input bg-white"
+                                                    maxlength="255"
                                                 />
                                             </div>
                                         </div>
@@ -684,7 +715,7 @@
                                             <div>
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Mobile Phone</label
+                                                >Mobile Phone</label
                                                 >
                                                 <input
                                                     type="text"
@@ -694,12 +725,13 @@
                                                     "
                                                     class="v-input bg-white"
                                                     placeholder="0400 000 000"
+                                                    maxlength="20"
                                                 />
                                             </div>
                                             <div>
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Secondary Phone</label
+                                                >Secondary Phone</label
                                                 >
                                                 <input
                                                     type="text"
@@ -708,12 +740,13 @@
                                                             .secondaryPhone
                                                     "
                                                     class="v-input bg-white"
+                                                    maxlength="20"
                                                 />
                                             </div>
                                             <div>
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Email Address</label
+                                                >Email Address</label
                                                 >
                                                 <input
                                                     type="email"
@@ -722,6 +755,7 @@
                                                             .email
                                                     "
                                                     class="v-input bg-white"
+                                                    maxlength="255"
                                                 />
                                             </div>
                                         </div>
@@ -729,7 +763,7 @@
                                         <div class="mb-4">
                                             <label
                                                 class="mb-2 block text-sm font-semibold text-slate-700"
-                                                >Is address same as Primary
+                                            >Is address same as Primary
                                                 Responsible Party?</label
                                             >
                                             <div class="flex gap-4">
@@ -776,7 +810,7 @@
                                             >
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Mailing Address</label
+                                                >Mailing Address</label
                                                 >
                                                 <input
                                                     type="text"
@@ -786,6 +820,7 @@
                                                     "
                                                     class="v-input mb-3 bg-white"
                                                     placeholder="Address Line 1"
+                                                    maxlength="255"
                                                 />
                                                 <input
                                                     type="text"
@@ -795,6 +830,7 @@
                                                     "
                                                     class="v-input mb-3 bg-white"
                                                     placeholder="Address Line 2"
+                                                    maxlength="255"
                                                 />
                                                 <div
                                                     class="grid grid-cols-2 gap-4"
@@ -808,6 +844,7 @@
                                                         "
                                                         class="v-input bg-white"
                                                         placeholder="Suburb"
+                                                        maxlength="255"
                                                     />
                                                     <input
                                                         type="text"
@@ -819,6 +856,7 @@
                                                         "
                                                         class="v-input bg-white"
                                                         placeholder="Post Code"
+                                                        maxlength="20"
                                                     />
                                                 </div>
                                             </div>
@@ -869,7 +907,7 @@
                                         <div>
                                             <label
                                                 class="mb-1 block text-sm font-semibold text-slate-700"
-                                                >Which Private Insurance Company
+                                            >Which Private Insurance Company
                                                 are you with?</label
                                             >
                                             <select
@@ -900,7 +938,7 @@
                                         <div>
                                             <label
                                                 class="mb-2 block text-sm font-semibold text-slate-700"
-                                                >Do you have Hospital
+                                            >Do you have Hospital
                                                 Cover?</label
                                             >
                                             <div class="flex gap-4">
@@ -950,7 +988,7 @@
                                     <div>
                                         <label
                                             class="mb-2 block text-sm font-semibold text-slate-700"
-                                            >Do you have Orthodontic
+                                        >Do you have Orthodontic
                                             Cover?</label
                                         >
                                         <div class="flex flex-col gap-2">
@@ -1047,7 +1085,7 @@
                                             />
                                             <span
                                                 class="text-sm font-medium text-slate-700"
-                                                >{{ condition.label }}</span
+                                            >{{ condition.label }}</span
                                             >
                                         </label>
 
@@ -1068,7 +1106,7 @@
                                                 >
                                                     <label
                                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                                        >{{
+                                                    >{{
                                                             condition.extraLabel
                                                         }}</label
                                                     >
@@ -1092,7 +1130,7 @@
                                                 >
                                                     <label
                                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                                        >{{
+                                                    >{{
                                                             condition.extraLabel
                                                         }}</label
                                                     >
@@ -1135,7 +1173,7 @@
                                                         >
                                                             <label
                                                                 class="mb-1 block text-sm font-semibold text-slate-700"
-                                                                >Please provide
+                                                            >Please provide
                                                                 more
                                                                 details:</label
                                                             >
@@ -1164,7 +1202,7 @@
                                                     <div>
                                                         <label
                                                             class="mb-2 block text-sm font-semibold text-slate-700"
-                                                            >Type</label
+                                                        >Type</label
                                                         >
                                                         <div class="flex gap-4">
                                                             <label
@@ -1208,7 +1246,7 @@
                                                     <div>
                                                         <label
                                                             class="mb-2 block text-sm font-semibold text-slate-700"
-                                                            >Status</label
+                                                        >Status</label
                                                         >
                                                         <div class="flex gap-4">
                                                             <label
@@ -1257,7 +1295,7 @@
                                                 >
                                                     <label
                                                         class="mb-2 block text-sm font-semibold text-slate-700"
-                                                        >History of Speech
+                                                    >History of Speech
                                                         Therapy</label
                                                     >
                                                     <div
@@ -1331,7 +1369,7 @@
                                     <div>
                                         <label
                                             class="mb-1 block text-sm font-semibold text-slate-700"
-                                            >Allergies (please list if
+                                        >Allergies (please list if
                                             applicable)</label
                                         >
                                         <input
@@ -1343,7 +1381,7 @@
                                     <div>
                                         <label
                                             class="mb-1 block text-sm font-semibold text-slate-700"
-                                            >Please list any Drugs or
+                                        >Please list any Drugs or
                                             Medications you are taking...</label
                                         >
                                         <textarea
@@ -1394,7 +1432,7 @@
                                         <div>
                                             <label
                                                 class="mb-2 block text-sm font-semibold text-slate-700"
-                                                >{{ question.label }}</label
+                                            >{{ question.label }}</label
                                             >
                                             <div class="flex gap-4">
                                                 <label
@@ -1448,7 +1486,7 @@
                                                                 question.extraSubLabel
                                                             "
                                                             class="mt-1 block text-xs font-normal text-slate-500"
-                                                            >{{
+                                                        >{{
                                                                 question.extraSubLabel
                                                             }}</span
                                                         >
@@ -1490,7 +1528,7 @@
                                     <div class="grid-cols-5">
                                         <label
                                             class="mb-1 block text-sm font-semibold text-slate-700"
-                                            >Signature *</label
+                                        >Signature *</label
                                         >
                                         <div>
                                             <Vue3Signature
@@ -1520,7 +1558,7 @@
                                     >
                                         <label
                                             class="mb-1 block text-sm font-semibold text-slate-700"
-                                            >Today's date</label
+                                        >Today's date</label
                                         >
                                         <span>{{ today }}</span>
                                     </div>
@@ -1557,7 +1595,7 @@
                                 <div class="mb-6">
                                     <label
                                         class="mb-2 block text-sm font-semibold text-slate-700"
-                                        >Do you want to add photos, x-rays, or a
+                                    >Do you want to add photos, x-rays, or a
                                         referral, and any other paperwork to
                                         your submission for the orthodontist to
                                         review?</label
@@ -1603,7 +1641,7 @@
                                                 href="https://youtu.be/T5B7y9Dk9jI?t=105"
                                                 target="_blank"
                                                 class="underline"
-                                                >Here is a link to a Youtube
+                                            >Here is a link to a Youtube
                                                 video that will help you take
                                                 great photos at home!</a
                                             >
@@ -1621,7 +1659,7 @@
                                             >
                                                 <label
                                                     class="mb-3 block h-10 text-sm font-semibold text-slate-700"
-                                                    >{{ label }}</label
+                                                >{{ label }}</label
                                                 >
                                                 <input
                                                     type="file"
@@ -1643,7 +1681,7 @@
                                 >
                                     <label
                                         class="mb-1 block text-sm font-semibold text-slate-700"
-                                        >Questions, Give credit to a referrer,
+                                    >Questions, Give credit to a referrer,
                                         or Add Notes and General Feedback,
                                         etc...</label
                                     >
@@ -1727,7 +1765,7 @@
                                             <div class="grid-cols-5">
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Patient / Guardian
+                                                >Patient / Guardian
                                                     Signature (Must be 18 years
                                                     old) *</label
                                                 >
@@ -1775,7 +1813,7 @@
                                             >
                                                 <label
                                                     class="mb-1 block text-sm font-semibold text-slate-700"
-                                                    >Date signed</label
+                                                >Date signed</label
                                                 >
                                                 <span>{{ today }}</span>
                                             </div>
@@ -1800,7 +1838,7 @@
                                     :disabled="isSubmitting"
                                 >
                                     <span v-if="!isSubmitting"
-                                        >Submit Application</span
+                                    >Submit Application</span
                                     >
                                     <span v-else>Submitting...</span>
                                 </button>
@@ -1829,6 +1867,8 @@ const options = reactive({
     penColor: 'rgb(0, 0, 0)',
     backgroundColor: 'rgb(255, 255, 255)',
 });
+
+const errors = ref<Record<string, string>>({});
 
 const clear = () => {
     if (signature.value) {
@@ -2218,7 +2258,60 @@ const handleFileUpload = (
     }
 };
 
+const validateStep1 = () => {
+    errors.value = {};
+    let isValid = true;
+
+    if (!formData.firstName || formData.firstName.trim() === '') {
+        errors.value.firstName = 'First Name is required.';
+        isValid = false;
+    } else if (formData.firstName.length > 255) {
+        errors.value.firstName = 'Must not exceed 255 characters.';
+        isValid = false;
+    }
+
+    if (!formData.lastName || formData.lastName.trim() === '') {
+        errors.value.lastName = 'Last Name is required.';
+        isValid = false;
+    } else if (formData.lastName.length > 255) {
+        errors.value.lastName = 'Must not exceed 255 characters.';
+        isValid = false;
+    }
+
+    if (!formData.sex) {
+        errors.value.sex = 'Sex is required.';
+        isValid = false;
+    }
+
+    if (!formData.dob) {
+        errors.value.dob = 'Birthdate is required.';
+        isValid = false;
+    }
+
+    if (!formData.mobileNumber || formData.mobileNumber.trim() === '') {
+        errors.value.mobileNumber = 'Mobile Number is required.';
+        isValid = false;
+    } else if (formData.mobileNumber.length > 20) {
+        errors.value.mobileNumber = 'Must not exceed 20 characters.';
+        isValid = false;
+    }
+
+    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        errors.value.email = 'Must be a valid email address.';
+        isValid = false;
+    }
+
+    return isValid;
+};
+
+
 const nextStep = () => {
+    if (currentStep.value === 1) {
+        if (!validateStep1()) {
+            return; // Stop here if initial backend required fields are not filled
+        }
+    }
+
     if (currentStep.value === 3) {
         if (signature.value && !signature.value.isEmpty()) {
             formData.dental.signature = signature.value.save('image/png');
@@ -2240,6 +2333,7 @@ const prevStep = () => {
 
 const submitForm = () => {
     isSubmitting.value = true;
+    errors.value = {};
 
     consentSections.forEach((consent) => {
         const sigRef = consentSignatures.value[consent.key];
@@ -2262,7 +2356,19 @@ const submitForm = () => {
             console.error('Submission errors:', error.response?.data || error);
 
             if (error.response && error.response.status === 422) {
+                const backendErrors = error.response.data.errors;
+                for (const key in backendErrors) {
+                    errors.value[key] = backendErrors[key][0];
+                }
+
                 alert('Please check the form for required fields or errors.');
+
+                // Return to step 1 if the backend flags any step 1 fields
+                const step1Keys = ['firstName', 'lastName', 'sex', 'dob', 'mobileNumber', 'email'];
+                if (step1Keys.some(key => errors.value[key])) {
+                    currentStep.value = 1;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             } else {
                 alert(
                     'An unexpected error occurred while saving your application.',
@@ -2274,6 +2380,7 @@ const submitForm = () => {
 const resetForm = () => {
     currentStep.value = 1;
     isSuccess.value = false;
+    errors.value = {};
 };
 </script>
 

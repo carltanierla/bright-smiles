@@ -12,6 +12,18 @@ use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
+    public function index()
+    {
+        $customers = Customer::with([
+            'medicalHistory',
+            'dentalHistory',
+            'photos',
+            'consentForms'
+        ])->get();
+
+        return response()->json($customers);
+    }
+
     /**
      * Helper to decode and store a base64 image string.
      */
