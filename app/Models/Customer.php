@@ -119,8 +119,20 @@ class Customer extends Authenticatable
 //        ];
 //    }
 
+    public function medicalHistory()
+    {
+        return $this->hasOne(CustomerMedicalHistory::class);
+    }
+    public function dentalHistory()
+    {
+        return $this->hasOne(CustomerDentalHistory::class);
+    }
     public function photos()
     {
         return $this->hasOne(CustomerPhoto::class);
+    }
+    public function consentForms()
+    {
+        return $this->hasOne(CustomerConsentForm::class);
     }
 }

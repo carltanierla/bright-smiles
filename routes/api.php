@@ -9,3 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/submit-form', [CustomerController::class, 'store'])->name('submit-form');
+
+Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');

@@ -67,11 +67,11 @@ class CustomerPhoto extends Model
     {
         return $this->teeth_lower ? Storage::disk('public')->url($this->teeth_lower) : null;
     }
-    public function getTeethXray1UrlAttribute(): ?string
+    public function getXray1UrlAttribute(): ?string
     {
         return $this->teeth_xray_1 ? Storage::disk('public')->url($this->teeth_xray_1) : null;
     }
-    public function getTeethXray2UrlAttribute(): ?string
+    public function getXray2UrlAttribute(): ?string
     {
         return $this->teeth_xray_2 ? Storage::disk('public')->url($this->teeth_xray_2) : null;
     }
