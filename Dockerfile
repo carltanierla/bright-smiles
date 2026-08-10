@@ -2,10 +2,8 @@
 FROM node:20 AS frontend-builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 COPY . .
-ARG VITE_APP_NAME="Laravel"
-ENV VITE_APP_NAME=$VITE_APP_NAME
 RUN npm run build
 
 # Step 2: Set up the PHP / Nginx production environment
