@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+    ->withMiddleware(function (Middleware $middleware) {
+        // Add this line to trust Render's load balancers
+        $middleware->trustProxies(at: '*');
+    })
     ->withMiddleware(function (Middleware $middleware): void {
         // Register Web Middleware
         $middleware->web(append: [
