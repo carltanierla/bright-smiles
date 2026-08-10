@@ -20,4 +20,4 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
-CMD ["sh", "-c", "nginx && php-fpm"]
+CMD ["sh", "-c", "php artisan migrate --force && nginx && php-fpm"]
