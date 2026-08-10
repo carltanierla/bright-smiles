@@ -2,7 +2,7 @@
 FROM node:20 AS frontend-builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 COPY . .
 ARG VITE_APP_NAME="Laravel"
 ENV VITE_APP_NAME=$VITE_APP_NAME
