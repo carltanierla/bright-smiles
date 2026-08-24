@@ -7,6 +7,7 @@ use Inertia\Inertia;
 
 Route::inertia('/', 'Home')->name('home');
 Route::inertia('/onlineform', 'OnlineForm')->name('online-form');
+Route::inertia('/onlinepayment', 'OnlinePaymentForm')->name('online-payment-form');
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -23,7 +24,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', function () {
             return Inertia::render('Admin/Dashboard');
         })->name('dashboard');
-
+        Route::get('/payments', function () {
+            return Inertia::render('Admin/OnlinePayment');
+        })->name('payments');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
     });
 });
