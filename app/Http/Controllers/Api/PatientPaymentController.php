@@ -5,94 +5,139 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\PatientPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Stripe\Exception\CardException;
 use Stripe\PaymentIntent;
 use Stripe\Stripe;
 
 class PatientPaymentController extends Controller
 {
+    /**
+     * Map of valid payment options and their fixed prices (in AUD cents).
+     */
+    private const PAYMENT_ITEMS = [
+        'deposit' => [
+            'label' => 'Appointment Deposit (non-refundable)',
+            'amount_cents' => 5000, // $50.00
+        ],
+        'retainers_both' => [
+            'label' => 'Upper & Lower retainers - Pick up from clinic',
+            'amount_cents' => 54000, // $540.00
+        ],
+        'retainer_upper' => [
+            'label' => 'Upper retainer only - Pick up from clinic',
+            'amount_cents' => 27000, // $270.00
+        ],
+        'retainer_lower' => [
+            'label' => 'Lower retainer only - Pick up from clinic',
+            'amount_cents' => 27000, // $270.00
+        ],
+    ];
+
     public function processPayment(Request $request)
     {
-        // 1. Validate Incoming Request
+        // 1. Validate Input Data
         $validated = $request->validate([
-            'nameOnCardFirst' => 'required|string',
-            'nameOnCardLast' => 'required|string',
-            'email' => 'required|email',
-            'addressLine1' => 'required|string',
-            'city' => 'required|string',
-            'state' => 'required|string',
-            'zipCode' => 'required|string',
-            'country' => 'required|string',
-            'paymentFor' => 'required|string',
-            'amount' => 'required|numeric',
+            'nameOnCardFirst' => 'required|string|max:100',
+            'nameOnCardLast' => 'required|string|max:100',
+            'email' => 'required|email|max:255',
+            'addressLine1' => 'required|string|max:255',
+            'addressLine2' => 'nullable|string|max:255',
+            'city' => 'required|string|max:100',
+            'state' => 'required|string|max:100',
+            'zipCode' => 'required|string|max:20',
+            'country' => 'required|string|max:100',
+            'paymentItemKey' => 'required|string|in:'.implode(',', array_keys(self::PAYMENT_ITEMS)),
             'stripePaymentMethodId' => 'required|string',
             'signature' => 'required|string',
-            'authorizeCharge' => 'required|string',
-            'date' => 'required|string',
-            'patientName' => 'nullable|string',
+            'authorizeCharge' => 'required|string|in:Yes',
+            'patientName' => 'nullable|string|max:255',
         ]);
 
         try {
-            // 2. Process Stripe Payment
-            Stripe::setApiKey(env('STRIPE_SECRET'));
+            // 2. Server-side Price Calculation (Prevents Price Tampering)
+            $selectedItem = self::PAYMENT_ITEMS[$validated['paymentItemKey']];
+            $baseAmountCents = $selectedItem['amount_cents'];
 
-            // The Vue component calculates the total including the 4.24% processing fee.
-            // Stripe expects the amount in the smallest currency unit (cents).
+            // Calculate 4.24% Stripe processing fee server-side
+            $processingFeeCents = (int) round($baseAmountCents * 0.0424);
+            $totalAmountCents = $baseAmountCents + $processingFeeCents;
+
+            // 3. Process Stripe Payment
+            Stripe::setApiKey(config('services.stripe.secret'));
+
             $paymentIntent = PaymentIntent::create([
-                'amount' => round($request->amount * 100),
-                'currency' => 'aud', // Assuming AUD based on the ABN in the context
-                'payment_method' => $request->stripePaymentMethodId,
+                'amount' => $totalAmountCents,
+                'currency' => 'aud',
+                'payment_method' => $validated['stripePaymentMethodId'],
                 'confirm' => true,
                 'automatic_payment_methods' => [
                     'enabled' => true,
                     'allow_redirects' => 'never',
                 ],
+                'description' => $selectedItem['label'],
+                'receipt_email' => $validated['email'],
+                'metadata' => [
+                    'patient_name' => $validated['patientName'] ?? 'N/A',
+                    'cardholder_name' => $validated['nameOnCardFirst'].' '.$validated['nameOnCardLast'],
+                ],
             ]);
 
-            // 3. Process & Save Signature Image
+            // 4. Secure Signature Storage (Private Disk)
             $signaturePath = null;
-            if ($request->signature) {
-                $imageParts = explode(';base64,', $request->signature);
-                $imageTypeAux = explode('image/', $imageParts[0]);
-                $imageType = $imageTypeAux[1] ?? 'png';
+            if (! empty($validated['signature']) && str_contains($validated['signature'], ';base64,')) {
+                $imageParts = explode(';base64,', $validated['signature']);
                 $imageBase64 = base64_decode($imageParts[1]);
-                $fileName = 'signatures/'.uniqid().'.'.$imageType;
 
-                Storage::disk('public')->put($fileName, $imageBase64);
+                // Store on non-public disk
+                $fileName = 'signatures/'.date('Y/m/').uniqid('sig_', true).'.png';
+                Storage::disk('local')->put($fileName, $imageBase64);
                 $signaturePath = $fileName;
             }
 
-            // 4. Save to Database mapping fields from the frontend
+            // 5. Store Payment Record
             $paymentRecord = PatientPayment::create([
-                'patient_name' => $request->patientName,
-                'name_on_card_first' => $request->nameOnCardFirst,
-                'name_on_card_last' => $request->nameOnCardLast,
-                'address_line_1' => $request->addressLine1,
-                'address_line_2' => $request->addressLine2,
-                'city' => $request->city,
-                'state' => $request->state,
-                'zip_code' => $request->zipCode,
-                'country' => $request->country,
-                'email' => $request->email,
-                'authorize_charge' => $request->authorizeCharge,
-                'payment_for' => $request->paymentFor,
-                'amount' => $request->amount,
+                'patient_name' => $validated['patientName'] ?? null,
+                'name_on_card_first' => $validated['nameOnCardFirst'],
+                'name_on_card_last' => $validated['nameOnCardLast'],
+                'address_line_1' => $validated['addressLine1'],
+                'address_line_2' => $validated['addressLine2'] ?? null,
+                'city' => $validated['city'],
+                'state' => $validated['state'],
+                'zip_code' => $validated['zipCode'],
+                'country' => $validated['country'],
+                'email' => $validated['email'],
+                'authorize_charge' => $validated['authorizeCharge'],
+                'payment_for' => $selectedItem['label'],
+                'amount' => $totalAmountCents / 100, // Store standard unit in DB ($)
                 'stripe_payment_id' => $paymentIntent->id,
-                'payment_status' => $paymentIntent->status === 'succeeded' ? 'Paid' : 'Failed',
-                'date_submitted' => $request->date,
+                'payment_status' => $paymentIntent->status === 'succeeded' ? 'Paid' : 'Pending',
+                'date_submitted' => now()->toDateString(),
                 'signature_path' => $signaturePath,
             ]);
 
             return response()->json([
-                'message' => 'Payment processed successfully',
-                'data' => $paymentRecord,
+                'message' => 'Payment processed successfully.',
+                'transaction_id' => $paymentIntent->id,
             ], 200);
 
-        } catch (\Exception $e) {
+        } catch (CardException $e) {
+            // Card declined or invalid card details
             return response()->json([
-                'message' => 'Payment processing failed',
-                'error' => $e->getMessage(),
+                'message' => $e->getMessage(),
             ], 422);
+
+        } catch (\Exception $e) {
+            // Log full exception details internally
+            Log::error('Payment processing failure: '.$e->getMessage(), [
+                'exception' => $e,
+                'request' => $request->except(['stripePaymentMethodId', 'signature']),
+            ]);
+
+            return response()->json([
+                'message' => 'An error occurred while processing your payment. Please try again.',
+            ], 500);
         }
     }
 }

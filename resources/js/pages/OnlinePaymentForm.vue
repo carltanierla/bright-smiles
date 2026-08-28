@@ -70,7 +70,7 @@
                     <span><strong>ABN:</strong> 37 275 203 674</span>
                     <span>•</span>
                     <span
-                        >B.D.Sc(UWA), B.Sc.D(Hons)(UWA), D.Clin.Dent(Orth)(UWA),
+                    >B.D.Sc(UWA), B.Sc.D(Hons)(UWA), D.Clin.Dent(Orth)(UWA),
                         MRACDS(Ortho), M Orth RCS Edinburgh</span
                     >
                 </div>
@@ -109,7 +109,7 @@
                                         <span
                                             v-if="errors.nameOnCardFirst"
                                             class="mt-1 block text-xs text-red-500"
-                                            >{{ errors.nameOnCardFirst }}</span
+                                        >{{ errors.nameOnCardFirst }}</span
                                         >
                                     </div>
                                     <div>
@@ -126,7 +126,7 @@
                                         <span
                                             v-if="errors.nameOnCardLast"
                                             class="mt-1 block text-xs text-red-500"
-                                            >{{ errors.nameOnCardLast }}</span
+                                        >{{ errors.nameOnCardLast }}</span
                                         >
                                     </div>
                                 </div>
@@ -193,21 +193,11 @@
                                             v-model="formData.country"
                                             class="v-input bg-white"
                                         >
-                                            <option value="Australia">
-                                                Australia
-                                            </option>
-                                            <option value="United States">
-                                                United States
-                                            </option>
-                                            <option value="United Kingdom">
-                                                United Kingdom
-                                            </option>
-                                            <option value="New Zealand">
-                                                New Zealand
-                                            </option>
-                                            <option value="Philippines">
-                                                Philippines
-                                            </option>
+                                            <option value="Australia">Australia</option>
+                                            <option value="United States">United States</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="New Zealand">New Zealand</option>
+                                            <option value="Philippines">Philippines</option>
                                         </select>
                                     </div>
                                 </div>
@@ -236,7 +226,7 @@
                                     <span
                                         v-if="errors.email"
                                         class="mt-1 block text-xs text-red-500"
-                                        >{{ errors.email }}</span
+                                    >{{ errors.email }}</span
                                     >
                                 </div>
                                 <div>
@@ -275,7 +265,7 @@
                                 >
                                     I authorize Dr Benjamin Tai t/a Bright
                                     Smiles Orthodontics to charge my credit card
-                                    for the amounts below.
+                                    for the amounts below. <span class="text-red-500">*</span>
                                 </label>
                                 <div class="flex gap-4">
                                     <label
@@ -301,6 +291,11 @@
                                         No
                                     </label>
                                 </div>
+                                <span
+                                    v-if="errors.authorizeCharge"
+                                    class="mt-2 block text-xs font-bold text-red-500"
+                                >{{ errors.authorizeCharge }}</span
+                                >
                             </div>
 
                             <div>
@@ -311,44 +306,30 @@
                                     <span class="text-red-500">*</span>
                                 </label>
                                 <select
-                                    v-model="formData.paymentFor"
+                                    v-model="formData.paymentItemKey"
                                     class="v-input bg-white"
                                     :class="{
                                         'border-red-500 focus:border-red-500 focus:ring-red-500':
-                                            errors.paymentFor,
+                                            errors.paymentItemKey,
                                     }"
                                 >
-                                    <option
-                                        value="Appointment Deposit (non-refundable) - Deducted from Fees on day of appointment, if it has not been rescheduled - $50.00"
-                                    >
-                                        Appointment Deposit (non-refundable) -
-                                        Deducted from Fees on day of
-                                        appointment, if it has not been
-                                        rescheduled - $50.00
+                                    <option value="deposit">
+                                        Appointment Deposit (non-refundable) - Deducted from Fees on day of appointment, if it has not been rescheduled - $50.00
                                     </option>
-                                    <option
-                                        value="Upper & Lower retainers - Pick up from clinic - $540.00"
-                                    >
-                                        Upper & Lower retainers - Pick up from
-                                        clinic - $540.00
+                                    <option value="retainers_both">
+                                        Upper & Lower retainers - Pick up from clinic - $540.00
                                     </option>
-                                    <option
-                                        value="Upper retainer only - Pick up from clinic - $270.00"
-                                    >
-                                        Upper retainer only - Pick up from
-                                        clinic - $270.00
+                                    <option value="retainer_upper">
+                                        Upper retainer only - Pick up from clinic - $270.00
                                     </option>
-                                    <option
-                                        value="Lower retainer only - Pick up from clinic - $270.00"
-                                    >
-                                        Lower retainer only - Pick up from
-                                        clinic - $270.00
+                                    <option value="retainer_lower">
+                                        Lower retainer only - Pick up from clinic - $270.00
                                     </option>
                                 </select>
                                 <span
-                                    v-if="errors.paymentFor"
+                                    v-if="errors.paymentItemKey"
                                     class="mt-1 block text-xs text-red-500"
-                                    >{{ errors.paymentFor }}</span
+                                >{{ errors.paymentItemKey }}</span
                                 >
                             </div>
 
@@ -389,7 +370,7 @@
                                         <span
                                             v-if="errors.signature"
                                             class="mt-1 block text-xs text-red-500"
-                                            >{{ errors.signature }}</span
+                                        >{{ errors.signature }}</span
                                         >
                                     </div>
                                 </div>
@@ -402,13 +383,13 @@
                                         Date
                                     </label>
                                     <span class="font-medium text-slate-800">{{
-                                        todayFormatted
-                                    }}</span>
+                                            todayFormatted
+                                        }}</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- NEW: Stripe Elements Integration matching screenshot -->
+                        <!-- Stripe Elements Integration -->
                         <div class="mt-6 border-t border-slate-200 pt-4">
                             <h4 class="mb-3 font-bold text-slate-800">
                                 Secure Payment
@@ -447,21 +428,11 @@
                                         v-model="formData.country"
                                         class="h-11 w-full rounded-sm border border-gray-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-500"
                                     >
-                                        <option value="Australia">
-                                            Australia
-                                        </option>
-                                        <option value="United States">
-                                            United States
-                                        </option>
-                                        <option value="United Kingdom">
-                                            United Kingdom
-                                        </option>
-                                        <option value="New Zealand">
-                                            New Zealand
-                                        </option>
-                                        <option value="Philippines">
-                                            Philippines
-                                        </option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="New Zealand">New Zealand</option>
+                                        <option value="Philippines">Philippines</option>
                                     </select>
                                 </div>
 
@@ -473,12 +444,12 @@
                                         class="mb-4 flex justify-between gap-4 leading-relaxed"
                                     >
                                         <span class="w-4/5 pr-4"
-                                            >Payment for –
+                                        >Payment for –
                                             {{ formattedDescription }}</span
                                         >
                                         <span
                                             class="w-1/5 text-right font-medium"
-                                            >${{ subtotal.toFixed(2) }}</span
+                                        >${{ subtotal.toFixed(2) }}</span
                                         >
                                     </div>
 
@@ -490,7 +461,7 @@
                                         >
                                             <span>Subtotal:</span>
                                             <span class="w-16 text-right"
-                                                >${{
+                                            >${{
                                                     subtotal.toFixed(2)
                                                 }}</span
                                             >
@@ -498,7 +469,7 @@
                                         <div class="flex justify-end gap-6">
                                             <span>Stripe Processing Fee:</span>
                                             <span class="w-16 text-right"
-                                                >${{
+                                            >${{
                                                     processingFee.toFixed(2)
                                                 }}</span
                                             >
@@ -508,7 +479,7 @@
                                         >
                                             <span>Amount Due:</span>
                                             <span class="w-16 text-right"
-                                                >${{
+                                            >${{
                                                     totalDue.toFixed(2)
                                                 }}</span
                                             >
@@ -543,20 +514,26 @@ import { Head } from '@inertiajs/vue3';
 import type {
     Stripe,
     StripeElements,
-    StripeCardNumberElement} from '@stripe/stripe-js';
-import {
-    loadStripe
+    StripeCardNumberElement,
 } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import { ref, reactive, computed, onMounted } from 'vue';
 import Vue3Signature from 'vue3-signature';
+
+// Configuration maps
+const PAYMENT_ITEMS = {
+    'deposit': { label: 'Appointment Deposit (non-refundable)', price: 50.00 },
+    'retainers_both': { label: 'Upper & Lower retainers', price: 540.00 },
+    'retainer_upper': { label: 'Upper retainer only', price: 270.00 },
+    'retainer_lower': { label: 'Lower retainer only', price: 270.00 },
+};
 
 const isSubmitting = ref(false);
 const isSuccess = ref(false);
 const errors = ref<Record<string, string>>({});
 const stripeError = ref('');
 
-// Initialize today's date formatted as DD/MM/YYYY
 const dateObj = new Date();
 const todayFormatted = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
 
@@ -577,9 +554,8 @@ const formData = reactive({
     zipCode: '',
     country: 'Australia',
     email: '',
-    authorizeCharge: 'No',
-    paymentFor:
-        'Appointment Deposit (non-refundable) - Deducted from Fees on day of appointment, if it has not been rescheduled - $50.00',
+    authorizeCharge: 'No', // Default to no to enforce active consent
+    paymentItemKey: 'deposit', // Using the secure key instead of raw string
     signature: null as string | null,
     date: todayFormatted,
     patientName: '',
@@ -590,7 +566,8 @@ let stripe: Stripe | null = null;
 let elements: StripeElements | null = null;
 let cardNumber: StripeCardNumberElement | null = null;
 
-const stripePublicKey = 'pk_test_YOUR_STRIPE_PUBLIC_KEY';
+// Securely grab the API key from environment variables (fallback provided for development)
+const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY || 'pk_test_51U6RlZHtl5wMDIB90qBi1wFiL6jkaDiat568mXomPTB7KnmEGpdx1VFoR2C3KyifSGclwDzgLMXQmUkqmvXRlB2d00O9HUtKJp';
 
 onMounted(async () => {
     stripe = await loadStripe(stripePublicKey);
@@ -626,14 +603,13 @@ onMounted(async () => {
 });
 
 // --- DYNAMIC PRICING LOGIC ---
+// Calculates amounts locally for UI purposes based on secure keys
 const formattedDescription = computed(() => {
-    return formData.paymentFor.split(' - $')[0];
+    return PAYMENT_ITEMS[formData.paymentItemKey as keyof typeof PAYMENT_ITEMS].label;
 });
 
 const subtotal = computed(() => {
-    const match = formData.paymentFor.match(/\$([\d,]+\.\d{2})/);
-
-    return match ? parseFloat(match[1].replace(',', '')) : 0;
+    return PAYMENT_ITEMS[formData.paymentItemKey as keyof typeof PAYMENT_ITEMS].price;
 });
 
 const processingFee = computed(() => {
@@ -644,7 +620,6 @@ const totalDue = computed(() => {
     return subtotal.value + processingFee.value;
 });
 
-// Helper to get 2-letter ISO Country Code for Stripe
 const getCountryCode = (countryName: string) => {
     const map: Record<string, string> = {
         Australia: 'AU',
@@ -712,8 +687,13 @@ const validateForm = () => {
         isValid = false;
     }
 
-    if (!formData.paymentFor) {
-        errors.value.paymentFor = 'Payment option is required.';
+    if (formData.authorizeCharge !== 'Yes') {
+        errors.value.authorizeCharge = 'You must authorize the charge to proceed.';
+        isValid = false;
+    }
+
+    if (!formData.paymentItemKey) {
+        errors.value.paymentItemKey = 'Payment option is required.';
         isValid = false;
     }
 
@@ -746,7 +726,6 @@ const submitForm = async () => {
     }
 
     try {
-        // Tokenize Card with Stripe using full billing details
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card: cardNumber,
@@ -772,11 +751,10 @@ const submitForm = async () => {
             return;
         }
 
-        // Add calculated stripe properties to original payload
+        // We explicitly do NOT send 'amount' in the payload. The server calculates it.
         const payload = {
             ...formData,
             stripePaymentMethodId: paymentMethod.id,
-            amount: totalDue.value,
         };
 
         await axios.post('/api/submit-payment-details', payload);
@@ -810,22 +788,21 @@ const resetForm = () => {
 
     Object.keys(formData).forEach((key) => {
         if (key === 'country') {
-(formData as any)[key] = 'Australia';
-} else if (key === 'authorizeCharge') {
-(formData as any)[key] = 'No';
-} else if (key === 'paymentFor') {
-(formData as any)[key] =
-                'Appointment Deposit (non-refundable) - Deducted from Fees on day of appointment, if it has not been rescheduled - $50.00';
-} else if (key === 'date') {
-(formData as any)[key] = todayFormatted;
-} else {
-(formData as any)[key] = '';
-}
+            (formData as any)[key] = 'Australia';
+        } else if (key === 'authorizeCharge') {
+            (formData as any)[key] = 'No';
+        } else if (key === 'paymentItemKey') {
+            (formData as any)[key] = 'deposit';
+        } else if (key === 'date') {
+            (formData as any)[key] = todayFormatted;
+        } else {
+            (formData as any)[key] = '';
+        }
     });
 
     if (cardNumber) {
-cardNumber.clear();
-}
+        cardNumber.clear();
+    }
 
     clear();
 };
@@ -846,13 +823,12 @@ cardNumber.clear();
     box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
 }
 
-/* Specific styling to make Stripe wrapper divs look like native inputs */
 .stripe-input-container {
     background-color: #ffffff;
     border: 1px solid #d1d5db;
     border-radius: 0.125rem;
     padding: 0.65rem 0.75rem;
-    height: 44px; /* Matches standard input height */
+    height: 44px;
     display: flex;
     flex-direction: column;
     justify-content: center;

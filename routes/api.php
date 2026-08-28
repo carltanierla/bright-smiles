@@ -18,4 +18,6 @@ Route::put('/customers/{id}', [CustomerController::class, 'update']);
 Route::patch('/customers/{id}', [CustomerController::class, 'updateStatus']);
 
 
-Route::post('/submit-payment-details', [PatientPaymentController::class, 'processPayment']);
+Route::middleware(['throttle:5,1'])->group(function () {
+    Route::post('/submit-payment-details', [PatientPaymentController::class, 'processPayment']);
+});
