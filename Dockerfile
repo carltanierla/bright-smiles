@@ -1,34 +1,38 @@
-# --- Stage 1: Node.js for frontend assets ---
-FROM node:18-alpine AS frontend-builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+FROM php:8.4-fpm-alpine
 
-# --- Stage 2: PHP with Composer for backend ---
-FROM php:8.2-fpm-alpine
-WORKDIR /var/www/html
+# 1. Install system dependencies & Node.js safely
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    curl \
+    && curl -sL https://nodesource.com | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install system dependencies and PHP extensions if needed
-RUN apk add --no-cache bash git unzip openssh-client
+# 2. Enable Apache rewrite module (critical for frameworks like Laravel)
+RUN a2enmod rewrite
 
-# Install Composer
+# 3. Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy project files
+# 4. Set the working directory
+WORKDIR /var/www/html
+
+# 5. Copy your project code
 COPY . .
 
-# Copy compiled frontend assets from Stage 1
-COPY --from=frontend-builder /app/public /var/www/html/public
-
-# Run Composer installation
+# 6. Run your install commands natively
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --optimize-autoloader
+RUN npm install && npm run build
+
+# 7. Fix Apache document root permissions
+RUN chown -R www-data:www-data /var/www/html
+
+# 8. Render injects a $PORT environment variable. Configure Apache to follow it.
+RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
 EXPOSE 80
-
-FROM php:8.4-fpm-alpine
 
 # Added git, unzip, and openssh to support all Composer downloads
 RUN apk add --no-cache nginx supervisor mariadb-client postgresql-dev libpng-dev libjpeg-turbo-dev freetype-dev zip libzip-dev git unzip openssh
