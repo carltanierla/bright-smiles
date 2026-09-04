@@ -35,6 +35,37 @@ class PatientPaymentController extends Controller
         ],
     ];
 
+    public function index()
+    {
+        $payments = PatientPayment::orderBy('created_at', 'desc')->get()->map(function ($payment) {
+            return [
+                'id' => $payment->id,
+                'patient_name' => $payment->patient_name,
+                // Concatenate first and last name for the frontend
+                'name_on_card' => trim($payment->name_on_card_first . ' ' . $payment->name_on_card_last),
+                // Build a single billing address string
+                'billing_address' => implode(', ', array_filter([
+                    $payment->address_line_1,
+                    $payment->address_line_2,
+                    $payment->city,
+                    $payment->state,
+                    $payment->zip_code,
+                    $payment->country
+                ])),
+                'email' => $payment->email,
+                'authorization' => $payment->authorize_charge,
+                'payment_for' => $payment->payment_for,
+                'order_summary' => '$' . number_format($payment->amount, 2),
+                'status' => $payment->payment_status,
+                'date_added' => $payment->created_at->format('Y-m-d H:i'),
+                'submitted' => $payment->date_submitted,
+                'signature' => $payment->signature_path,
+            ];
+        });
+
+        return response()->json($payments);
+    }
+
     public function processPayment(Request $request)
     {
         // 1. Validate Input Data

@@ -1,4 +1,5 @@
 <template>
+    <Head title="Home" />
     <div
         class="overflow-x-hidden bg-white font-sans text-slate-900 antialiased selection:bg-blue-900 selection:text-white"
     >
@@ -25,32 +26,32 @@
                     <div class="hidden items-center space-x-12 md:flex">
                         <a
                             href="#"
-                            class="text-xs font-semibold tracking-widest text-slate-400 uppercase transition-colors duration-300 hover:text-blue-900"
+                            class="text-xs font-semibold uppercase tracking-widest text-slate-400 transition-colors duration-300 hover:text-blue-900"
                             >Home</a
                         >
                         <a
                             href="#about"
-                            class="text-xs font-semibold tracking-widest text-slate-400 uppercase transition-colors duration-300 hover:text-blue-900"
+                            class="text-xs font-semibold uppercase tracking-widest text-slate-400 transition-colors duration-300 hover:text-blue-900"
                             >Dr Ben</a
                         >
                         <a
                             href="#transformations"
-                            class="text-xs font-semibold tracking-widest text-slate-400 uppercase transition-colors duration-300 hover:text-blue-900"
+                            class="text-xs font-semibold uppercase tracking-widest text-slate-400 transition-colors duration-300 hover:text-blue-900"
                             >Results</a
                         >
                         <a
                             href="#technology"
-                            class="text-xs font-semibold tracking-widest text-slate-400 uppercase transition-colors duration-300 hover:text-blue-900"
+                            class="text-xs font-semibold uppercase tracking-widest text-slate-400 transition-colors duration-300 hover:text-blue-900"
                             >Technology</a
                         >
                         <a
                             href="#locations"
-                            class="text-xs font-semibold tracking-widest text-slate-400 uppercase transition-colors duration-300 hover:text-blue-900"
+                            class="text-xs font-semibold uppercase tracking-widest text-slate-400 transition-colors duration-300 hover:text-blue-900"
                             >Locations</a
                         >
                         <Link
                             href="/onlineform"
-                            class="bg-blue-900 px-8 py-4 text-xs font-bold tracking-widest text-white uppercase shadow-sm transition-all duration-300 hover:bg-slate-900 hover:shadow-lg"
+                            class="bg-blue-900 px-8 py-4 text-xs font-bold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:bg-slate-900 hover:shadow-lg"
                         >
                             Book Online
                         </Link>
@@ -113,14 +114,14 @@
                 <Link
                     href="/onlineform"
                     @click="toggleMenu"
-                    class="mt-6 block bg-blue-900 py-4 text-center text-xs font-bold tracking-widest text-white uppercase"
+                    class="mt-6 block bg-blue-900 py-4 text-center text-xs font-bold uppercase tracking-widest text-white"
                     >Start Your Journey
                 </Link>
             </div>
         </nav>
 
         <section
-            class="relative overflow-hidden bg-slate-50 pt-48 pb-28 lg:pt-64 lg:pb-44"
+            class="relative overflow-hidden bg-slate-50 pb-28 pt-48 lg:pb-44 lg:pt-64"
         >
             <div class="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
                 <div class="grid items-center gap-16 lg:grid-cols-12 lg:gap-8">
@@ -130,7 +131,7 @@
                         data-aos-duration="1200"
                     >
                         <h1
-                            class="font-display mb-10 text-5xl leading-none font-light tracking-tight text-slate-900 sm:text-6xl lg:text-7xl"
+                            class="font-display mb-10 text-5xl font-light leading-none tracking-tight text-slate-900 sm:text-6xl lg:text-7xl"
                         >
                             Your Smile.<br />
                             <span class="font-bold text-blue-900"
@@ -139,7 +140,7 @@
                             Your Future.
                         </h1>
                         <p
-                            class="mb-12 max-w-lg text-lg leading-relaxed font-light text-slate-500 sm:text-xl"
+                            class="mb-12 max-w-lg text-lg font-light leading-relaxed text-slate-500 sm:text-xl"
                         >
                             Specialist Orthodontic Care for Children, Teens &
                             Adults. Experience world-class digital smile design
@@ -150,7 +151,7 @@
                         >
                             <Link href="/onlineform">
                                 <a
-                                    class="flex items-center justify-center gap-3 bg-blue-900 px-10 py-5 text-center text-xs font-bold tracking-widest text-white uppercase shadow-md transition-all duration-300 hover:bg-slate-900 hover:shadow-xl"
+                                    class="flex items-center justify-center gap-3 bg-blue-900 px-10 py-5 text-center text-xs font-bold uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:bg-slate-900 hover:shadow-xl"
                                 >
                                     Schedule Your Consultation
                                     <i
@@ -160,7 +161,7 @@
                             </Link>
                             <a
                                 href="#transformations"
-                                class="flex items-center justify-center border border-slate-300 bg-transparent px-10 py-5 text-center text-xs font-bold tracking-widest text-slate-900 uppercase transition-all duration-300 hover:border-slate-400 hover:bg-white"
+                                class="flex items-center justify-center border border-slate-300 bg-transparent px-10 py-5 text-center text-xs font-bold uppercase tracking-widest text-slate-900 transition-all duration-300 hover:border-slate-400 hover:bg-white"
                             >
                                 See What's Possible
                             </a>
@@ -174,7 +175,7 @@
                         data-aos-delay="200"
                     >
                         <div
-                            class="group relative h-137.5 overflow-hidden bg-slate-200 shadow-2xl lg:h-162.5"
+                            class="h-137.5 lg:h-162.5 group relative overflow-hidden bg-slate-200 shadow-2xl"
                         >
                             <img
                                 src="/images/BrightSmileHero1.png"
@@ -210,7 +211,7 @@
                             {{ stat.number }}
                         </p>
                         <p
-                            class="text-xs font-bold tracking-widest text-slate-400 uppercase"
+                            class="text-xs font-bold uppercase tracking-widest text-slate-400"
                         >
                             {{ stat.label }}
                         </p>
@@ -226,7 +227,7 @@
                     data-aos="fade-up"
                 >
                     <h2
-                        class="mb-4 text-xs font-bold tracking-widest text-blue-900 uppercase"
+                        class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-900"
                     >
                         The Bright Smiles Difference
                     </h2>
@@ -256,7 +257,7 @@
                                 {{ reason.title }}
                             </h4>
                             <p
-                                class="text-sm leading-relaxed font-light text-slate-500"
+                                class="text-sm font-light leading-relaxed text-slate-500"
                             >
                                 {{ reason.desc }}
                             </p>
@@ -266,7 +267,7 @@
             </div>
         </section>
 
-        <!-- About Section with Integrated Auto-sliding Gallery -->
+        <!-- About Section -->
         <section
             id="about"
             class="border-t border-slate-100 bg-white py-32 lg:py-44"
@@ -279,7 +280,7 @@
                         data-aos-duration="1200"
                     >
                         <div
-                            class="group relative h-150 overflow-hidden bg-slate-100 shadow-2xl"
+                            class="h-150 group relative overflow-hidden bg-slate-100 shadow-2xl"
                         >
                             <transition name="fade" mode="out-in">
                                 <img
@@ -294,12 +295,11 @@
                                             ].fallback
                                     "
                                     :alt="aboutImages[currentAboutIndex].alt"
-                                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-103"
+                                    class="group-hover:scale-103 h-full w-full object-cover transition-transform duration-700"
                                 />
                             </transition>
-                            <!-- Optional Slide Visual Indicators -->
                             <div
-                                class="absolute bottom-6 left-6 z-10 flex gap-2 bg-slate-950/40 p-2 backdrop-blur-xs"
+                                class="backdrop-blur-xs absolute bottom-6 left-6 z-10 flex gap-2 bg-slate-950/40 p-2"
                             >
                                 <span
                                     v-for="(_, index) in aboutImages"
@@ -321,18 +321,18 @@
                         data-aos-duration="1200"
                     >
                         <h2
-                            class="mb-4 text-xs font-bold tracking-widest text-blue-900 uppercase"
+                            class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-900"
                         >
                             Your Professional Smile Designer
                         </h2>
                         <h3
-                            class="font-display mb-8 text-4xl leading-tight font-bold text-slate-900 lg:text-5xl"
+                            class="font-display mb-8 text-4xl font-bold leading-tight text-slate-900 lg:text-5xl"
                         >
                             Dr. Benjamin Tai
                         </h3>
 
                         <p
-                            class="mb-12 max-w-2xl text-xl leading-relaxed font-light text-slate-500"
+                            class="mb-12 max-w-2xl text-xl font-light leading-relaxed text-slate-500"
                         >
                             People don't just invest in clinical alignment; they
                             trust the practitioner behind the artistry. Dr. Tai
@@ -426,7 +426,7 @@
 
                         <div class="max-w-xl border-l-4 border-blue-900 pl-8">
                             <p
-                                class="font-display text-xl leading-relaxed text-slate-900 italic"
+                                class="font-display text-xl italic leading-relaxed text-slate-900"
                             >
                                 "Orthodontics is the architecture of
                                 self-esteem. We don't just reposition teeth; we
@@ -440,7 +440,7 @@
         </section>
 
         <section
-            id="transformations"
+            id="conditions"
             class="overflow-hidden bg-slate-950 py-32 text-white lg:py-44"
         >
             <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -449,28 +449,28 @@
                 >
                     <div class="max-w-xl">
                         <h2
-                            class="mb-4 text-xs font-bold tracking-widest text-blue-400 uppercase"
+                            class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-400"
                         >
-                            Case Studies
+                            Clinical Education
                         </h2>
                         <h3
-                            class="font-display text-4xl leading-tight font-bold lg:text-5xl"
+                            class="font-display text-4xl font-bold leading-tight lg:text-5xl"
                         >
-                            Changing Smiles.<br />Changing Lives.
+                            Understanding Common<br />Orthodontic Conditions
                         </h3>
                     </div>
                     <div class="flex gap-3 self-end">
                         <button
-                            @click="prevTransformation"
+                            @click="prevCondition"
                             class="flex h-14 w-14 items-center justify-center border border-slate-800 transition-all duration-300 hover:border-white hover:bg-white hover:text-slate-950"
-                            aria-label="Previous Case Study"
+                            aria-label="Previous Condition"
                         >
                             <i class="fa-solid fa-arrow-left text-sm"></i>
                         </button>
                         <button
-                            @click="nextTransformation"
+                            @click="nextCondition"
                             class="flex h-14 w-14 items-center justify-center border border-slate-800 transition-all duration-300 hover:border-white hover:bg-white hover:text-slate-950"
-                            aria-label="Next Case Study"
+                            aria-label="Next Condition"
                         >
                             <i class="fa-solid fa-arrow-right text-sm"></i>
                         </button>
@@ -482,46 +482,28 @@
                 >
                     <transition name="fade" mode="out-in">
                         <div
-                            :key="activeTransformation.id"
+                            :key="activeCondition.id"
                             class="grid items-stretch lg:grid-cols-12"
                         >
                             <div
                                 class="group relative flex h-80 bg-slate-800 sm:h-[450px] lg:col-span-6 lg:h-[550px]"
                             >
                                 <div
-                                    class="relative h-full w-1/2 overflow-hidden border-r border-slate-900"
+                                    class="relative h-full w-full overflow-hidden"
                                 >
                                     <img
-                                        :src="activeTransformation.beforeImg"
+                                        :src="activeCondition.image"
                                         onerror="
                                             this.onerror = null;
                                             this.src =
-                                                'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=400&q=80';
+                                                'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80';
                                         "
-                                        class="h-full w-full object-cover grayscale transition-transform duration-700 group-hover:scale-103"
-                                        alt="Orthodontic clinical case alignment state before care"
+                                        class="group-hover:scale-103 h-full w-full object-cover transition-transform duration-700"
+                                        :alt="`Clinical diagram illustrating ${activeCondition.name}`"
                                     />
                                     <span
-                                        class="absolute bottom-6 left-6 border border-white/10 bg-slate-950/80 px-3 py-1.5 text-[10px] font-bold tracking-widest text-slate-300 uppercase backdrop-blur-md"
-                                        >Before</span
-                                    >
-                                </div>
-                                <div
-                                    class="relative h-full w-1/2 overflow-hidden"
-                                >
-                                    <img
-                                        :src="activeTransformation.afterImg"
-                                        onerror="
-                                            this.onerror = null;
-                                            this.src =
-                                                'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80';
-                                        "
-                                        class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-103"
-                                        alt="Final precision orthodontic alignment result after care"
-                                    />
-                                    <span
-                                        class="absolute right-6 bottom-6 bg-blue-900 px-3 py-1.5 text-[10px] font-bold tracking-widest text-white uppercase"
-                                        >After</span
+                                        class="absolute bottom-6 left-6 bg-blue-900 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white"
+                                        >Condition Profile</span
                                     >
                                 </div>
                             </div>
@@ -531,42 +513,48 @@
                             >
                                 <div class="mb-4 flex items-center gap-3">
                                     <span
-                                        class="text-xs font-bold tracking-widest text-blue-400 uppercase"
-                                        >{{
-                                            activeTransformation.treatment
-                                        }}</span
-                                    >
-                                    <span
-                                        class="h-1 w-1 rounded-full bg-slate-700"
-                                    ></span>
-                                    <span
-                                        class="text-xs tracking-widest text-slate-400 uppercase"
-                                        >{{
-                                            activeTransformation.duration
-                                        }}</span
+                                        class="text-xs font-bold uppercase tracking-widest text-blue-400"
+                                        >Structural Diagnosis</span
                                     >
                                 </div>
                                 <h4
-                                    class="font-display mb-8 text-3xl font-bold text-white sm:text-4xl"
+                                    class="font-display mb-6 text-3xl font-bold text-white sm:text-4xl"
                                 >
-                                    {{ activeTransformation.name }},
-                                    <span
-                                        class="text-2xl font-light text-slate-400 sm:text-3xl"
-                                        >Age
-                                        {{ activeTransformation.age }}</span
-                                    >
+                                    {{ activeCondition.name }}
                                 </h4>
-                                <blockquote
-                                    class="mb-10 border-l-2 border-blue-500 pl-6 text-lg leading-relaxed font-light text-slate-300 italic sm:text-xl"
+                                <p
+                                    class="mb-10 text-lg font-light leading-relaxed text-slate-300 sm:text-xl"
                                 >
-                                    "{{ activeTransformation.quote }}"
-                                </blockquote>
+                                    {{ activeCondition.description }}
+                                </p>
+
+                                <div
+                                    class="mb-10 space-y-3 border-l-2 border-slate-700 pl-6"
+                                >
+                                    <p class="text-sm font-bold text-slate-200">
+                                        Potential Clinical Impacts:
+                                    </p>
+                                    <ul
+                                        class="list-disc pl-4 text-sm font-light text-slate-400"
+                                    >
+                                        <li
+                                            v-for="(
+                                                impact, idx
+                                            ) in activeCondition.impacts"
+                                            :key="idx"
+                                            class="mb-1"
+                                        >
+                                            {{ impact }}
+                                        </li>
+                                    </ul>
+                                </div>
+
                                 <div>
                                     <a
                                         href="#booking"
-                                        class="group inline-flex items-center gap-3 text-xs font-bold tracking-widest text-white uppercase transition-colors duration-300 hover:text-blue-400"
+                                        class="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-white transition-colors duration-300 hover:text-blue-400"
                                     >
-                                        Book Similar Consultation
+                                        Schedule an Assessment
                                         <i
                                             class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"
                                         ></i>
@@ -586,7 +574,7 @@
                     data-aos="fade-up"
                 >
                     <h2
-                        class="mb-4 text-xs font-bold tracking-widest text-blue-900 uppercase"
+                        class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-900"
                     >
                         Precision & Comfort
                     </h2>
@@ -615,7 +603,7 @@
                                 {{ tech.title }}
                             </h4>
                             <p
-                                class="text-sm leading-relaxed font-light text-slate-500"
+                                class="text-sm font-light leading-relaxed text-slate-500"
                             >
                                 {{ tech.desc }}
                             </p>
@@ -632,7 +620,7 @@
                     data-aos="fade-up"
                 >
                     <h2
-                        class="mb-4 text-xs font-bold tracking-widest text-blue-900 uppercase"
+                        class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-900"
                     >
                         The Process
                     </h2>
@@ -643,7 +631,7 @@
 
                 <div class="relative mx-auto max-w-5xl">
                     <div
-                        class="absolute top-12 left-0 z-0 hidden h-px w-full bg-slate-200 md:block"
+                        class="absolute left-0 top-12 z-0 hidden h-px w-full bg-slate-200 md:block"
                     ></div>
 
                     <div
@@ -657,7 +645,7 @@
                             :data-aos-delay="index * 150"
                         >
                             <div
-                                class="relative mx-auto mb-6 flex h-24 w-24 items-center justify-center border border-slate-200 bg-white bg-linear-to-b from-white to-slate-50/50 text-sm font-bold text-blue-900 shadow-sm transition-colors duration-500 group-hover:border-blue-900"
+                                class="bg-linear-to-b relative mx-auto mb-6 flex h-24 w-24 items-center justify-center border border-slate-200 bg-white from-white to-slate-50/50 text-sm font-bold text-blue-900 shadow-sm transition-colors duration-500 group-hover:border-blue-900"
                             >
                                 0{{ index + 1 }}
                             </div>
@@ -665,7 +653,7 @@
                                 {{ step.title }}
                             </h4>
                             <p
-                                class="mx-auto max-w-xs text-xs leading-relaxed font-light text-slate-400"
+                                class="mx-auto max-w-xs text-xs font-light leading-relaxed text-slate-400"
                             >
                                 {{ step.desc }}
                             </p>
@@ -680,9 +668,9 @@
             class="overflow-hidden border-b border-slate-100 bg-slate-50 py-32 lg:py-44"
         >
             <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-                <div class="mx-auto mb-30 max-w-2xl text-center">
+                <div class="mx-auto mb-40 max-w-2xl text-center">
                     <h2
-                        class="mb-4 text-xs font-bold tracking-widest text-blue-900 uppercase"
+                        class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-900"
                     >
                         Verified Experiences
                     </h2>
@@ -702,7 +690,7 @@
                             class="absolute inset-x-0 text-center transition-all duration-700"
                         >
                             <p
-                                class="font-display mx-auto mb-6 max-w-3xl text-xl leading-relaxed text-slate-800 italic sm:text-2xl"
+                                class="font-display mx-auto mb-6 max-w-3xl text-xl italic leading-relaxed text-slate-800 sm:text-2xl"
                             >
                                 "{{ testimonial.quote }}"
                             </p>
@@ -715,14 +703,14 @@
                                     class="h-1 w-1 rounded-full bg-slate-300"
                                 ></span>
                                 <span
-                                    class="text-xs font-semibold tracking-wider text-blue-900 uppercase"
+                                    class="text-xs font-semibold uppercase tracking-wider text-blue-900"
                                     >{{ testimonial.treatment }}</span
                                 >
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-30 flex justify-center gap-3">
+                    <div class="mt-40 flex justify-center gap-3">
                         <button
                             v-for="(_, index) in testimonials"
                             :key="index"
@@ -745,18 +733,18 @@
                 <div class="mb-20 grid items-center gap-16 lg:grid-cols-12">
                     <div class="lg:col-span-6">
                         <h2
-                            class="mb-4 text-xs font-bold tracking-widest text-blue-900 uppercase"
+                            class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-900"
                         >
                             Exclusivity in Practice
                         </h2>
                         <h3
-                            class="font-display text-4xl leading-tight font-bold text-slate-900 lg:text-5xl"
+                            class="font-display text-4xl font-bold leading-tight text-slate-900 lg:text-5xl"
                         >
                             The Practice Experience
                         </h3>
                     </div>
                     <div class="lg:col-span-6 lg:pl-10">
-                        <p class="leading-relaxed font-light text-slate-500">
+                        <p class="font-light leading-relaxed text-slate-500">
                             We welcome patients into premium spaces optimized
                             for tranquility and medical clinical excellence.
                             From digital configuration suites to curated patient
@@ -776,10 +764,10 @@
                             class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         <div
-                            class="absolute inset-0 flex items-end bg-linear-to-t from-slate-950/60 via-transparent to-transparent p-8 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            class="bg-linear-to-t absolute inset-0 flex items-end from-slate-950/60 via-transparent to-transparent p-8 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         >
                             <p
-                                class="text-sm font-bold tracking-widest text-white uppercase"
+                                class="text-sm font-bold uppercase tracking-widest text-white"
                             >
                                 Consultation Area
                             </p>
@@ -794,10 +782,10 @@
                             class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         <div
-                            class="absolute inset-0 flex items-end bg-linear-to-t from-slate-950/60 via-transparent to-transparent p-8 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            class="bg-linear-to-t absolute inset-0 flex items-end from-slate-950/60 via-transparent to-transparent p-8 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         >
                             <p
-                                class="text-sm font-bold tracking-widest text-white uppercase"
+                                class="text-sm font-bold uppercase tracking-widest text-white"
                             >
                                 Patient waiting room & kids area
                             </p>
@@ -812,10 +800,10 @@
                             class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         <div
-                            class="absolute inset-0 flex items-end bg-linear-to-t from-slate-950/60 via-transparent to-transparent p-8 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            class="bg-linear-to-t absolute inset-0 flex items-end from-slate-950/60 via-transparent to-transparent p-8 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         >
                             <p
-                                class="text-sm font-bold tracking-widest text-white uppercase"
+                                class="text-sm font-bold uppercase tracking-widest text-white"
                             >
                                 Reception Area
                             </p>
@@ -835,7 +823,7 @@
                     data-aos="fade-up"
                 >
                     <h2
-                        class="mb-4 text-xs font-bold tracking-widest text-blue-900 uppercase"
+                        class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-900"
                     >
                         Our Clinics
                     </h2>
@@ -876,7 +864,7 @@
                                 ></i>
                             </div>
                             <p
-                                class="line-clamp-2 text-xs leading-relaxed font-light text-slate-500"
+                                class="line-clamp-2 text-xs font-light leading-relaxed text-slate-500"
                             >
                                 {{ clinic.address }}
                             </p>
@@ -908,7 +896,7 @@
                                         :href="activeClinic.directionsUrl"
                                         target="_blank"
                                         rel="noopener"
-                                        class="flex shrink-0 items-center gap-2 bg-slate-900 px-6 py-4 text-xs font-bold tracking-widest text-white uppercase shadow-sm transition-colors duration-300 hover:bg-blue-900"
+                                        class="flex shrink-0 items-center gap-2 bg-slate-900 px-6 py-4 text-xs font-bold uppercase tracking-widest text-white shadow-sm transition-colors duration-300 hover:bg-blue-900"
                                     >
                                         <i
                                             class="fa-solid fa-route text-xs"
@@ -918,7 +906,7 @@
                                 </div>
 
                                 <div
-                                    class="relative h-112.5 overflow-hidden lg:col-span-3 lg:h-140"
+                                    class="h-112.5 lg:h-140 relative overflow-hidden lg:col-span-3"
                                     data-aos="fade-left"
                                     data-aos-duration="1000"
                                     data-aos-delay="200"
@@ -957,7 +945,7 @@
                 >
                     <div class="lg:col-span-6">
                         <h2
-                            class="mb-4 text-xs font-bold tracking-widest text-blue-400 uppercase"
+                            class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-400"
                         >
                             Careers
                         </h2>
@@ -967,7 +955,7 @@
                             Join Our Growing Team
                         </h3>
                         <p
-                            class="mb-10 max-w-lg text-base leading-relaxed font-light text-slate-400"
+                            class="mb-10 max-w-lg text-base font-light leading-relaxed text-slate-400"
                         >
                             We are continually seeking passionate, meticulous
                             dental professionals to join our practice suites.
@@ -1014,7 +1002,7 @@
                         </p>
                         <a
                             href="mailto:info@brightsmilesortho.com.au"
-                            class="inline-block bg-white px-8 py-4 text-xs font-bold tracking-widest text-slate-900 uppercase shadow-md transition-all duration-300 hover:bg-blue-400 hover:text-white"
+                            class="inline-block bg-white px-8 py-4 text-xs font-bold uppercase tracking-widest text-slate-900 shadow-md transition-all duration-300 hover:bg-blue-400 hover:text-white"
                         >
                             info@brightsmilesortho.com.au
                         </a>
@@ -1022,7 +1010,7 @@
                         <div class="my-8 flex w-full items-center opacity-40">
                             <div class="h-px flex-1 bg-slate-600"></div>
                             <span
-                                class="px-4 text-center text-[10px] font-bold tracking-widest text-slate-400 uppercase"
+                                class="px-4 text-center text-[10px] font-bold uppercase tracking-widest text-slate-400"
                                 >Social Communication</span
                             >
                             <div class="h-px flex-1 bg-slate-600"></div>
@@ -1077,7 +1065,7 @@
                     <div
                         v-for="(faq, index) in faqs"
                         :key="index"
-                        class="border border-slate-200/60 bg-white shadow-xs"
+                        class="shadow-xs border border-slate-200/60 bg-white"
                     >
                         <button
                             @click="toggleFaq(index)"
@@ -1099,7 +1087,7 @@
                         <transition name="accordion">
                             <div
                                 v-show="activeFaq === index"
-                                class="px-8 pb-6 text-sm leading-relaxed font-light text-slate-500"
+                                class="px-8 pb-6 text-sm font-light leading-relaxed text-slate-500"
                             >
                                 {{ faq.answer }}
                             </div>
@@ -1109,31 +1097,30 @@
             </div>
         </section>
 
+        <!-- UPDATED BOOKING SECTION WITH SCREENSHOT LAYOUT & EMAILJS INTEGRATION -->
         <section
             id="booking"
             class="border-t border-slate-100 bg-white py-32 lg:py-44"
         >
             <div class="mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
                 <div
-                    class="border border-slate-200/60 bg-slate-50 p-8 shadow-xs sm:p-16"
+                    class="shadow-xs border border-slate-200/60 bg-slate-50 p-8 sm:p-16"
                 >
                     <div class="mx-auto mb-16 max-w-xl text-center">
                         <h2
-                            class="mb-4 text-xs font-bold tracking-widest text-blue-900 uppercase"
+                            class="mb-4 text-xs font-bold uppercase tracking-widest text-blue-900"
                         >
                             Take the first step
                         </h2>
                         <h3
                             class="font-display mb-4 text-4xl font-bold text-slate-900"
                         >
-                            Discover Your Smile Options
+                            Bright Smiles Online Form
                         </h3>
                         <p
-                            class="text-sm leading-relaxed font-light text-slate-500"
+                            class="text-sm font-light leading-relaxed text-slate-500"
                         >
-                            Submit the diagnostic data request below for a
-                            comprehensive consultation appointment at our
-                            practice suites.
+                            Please complete the form below.
                         </p>
                     </div>
 
@@ -1142,7 +1129,7 @@
                             class="fa-solid fa-circle-check mb-6 text-5xl text-blue-900"
                         ></i>
                         <h3 class="mb-2 text-2xl font-bold text-slate-900">
-                            Request Catalogued
+                            Registration Complete
                         </h3>
                         <p class="mb-8 text-sm font-light text-slate-500">
                             Our master treatment coordinator will communicate
@@ -1150,88 +1137,163 @@
                         </p>
                         <button
                             @click="resetBooking"
-                            class="border-b border-blue-900 pb-1 text-xs font-bold tracking-widest text-blue-900 uppercase hover:text-slate-900"
+                            class="border-b border-blue-900 pb-1 text-xs font-bold uppercase tracking-widest text-blue-900 hover:text-slate-900"
                         >
-                            Submit Alternative Profile Request
+                            Submit Alternative Request
                         </button>
                     </div>
 
                     <form
                         v-else
+                        ref="formRef"
                         @submit.prevent="submitBooking"
-                        class="space-y-8"
+                        class="space-y-6"
                     >
-                        <div class="grid gap-6 md:grid-cols-2">
-                            <div>
-                                <label
-                                    class="mb-2 block text-[10px] font-bold tracking-widest text-slate-400 uppercase"
-                                    >First Name</label
-                                >
-                                <input
-                                    v-model="formData.firstName"
-                                    type="text"
-                                    class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light transition-colors outline-none focus:border-slate-400"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    class="mb-2 block text-[10px] font-bold tracking-widest text-slate-400 uppercase"
-                                    >Last Name</label
-                                >
-                                <input
-                                    v-model="formData.lastName"
-                                    type="text"
-                                    class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light transition-colors outline-none focus:border-slate-400"
-                                    required
-                                />
-                            </div>
-                        </div>
-                        <div class="grid gap-6 md:grid-cols-2">
-                            <div>
-                                <label
-                                    class="mb-2 block text-[10px] font-bold tracking-widest text-slate-400 uppercase"
-                                    >Email Address</label
-                                >
-                                <input
-                                    v-model="formData.email"
-                                    type="email"
-                                    class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light transition-colors outline-none focus:border-slate-400"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    class="mb-2 block text-[10px] font-bold tracking-widest text-slate-400 uppercase"
-                                    >Phone Number</label
-                                >
-                                <input
-                                    v-model="formData.phone"
-                                    type="tel"
-                                    class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light transition-colors outline-none focus:border-slate-400"
-                                    required
-                                />
-                            </div>
-                        </div>
                         <div>
-                            <label
-                                class="mb-2 block text-[10px] font-bold tracking-widest text-slate-400 uppercase"
-                                >How can our team assist your goals?</label
+                            <input
+                                name="fullName"
+                                v-model="formData.fullName"
+                                type="text"
+                                placeholder="*First & Last Name"
+                                class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light outline-none transition-colors focus:border-slate-400"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <input
+                                name="email"
+                                v-model="formData.email"
+                                type="email"
+                                placeholder="*Email Address"
+                                class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light outline-none transition-colors focus:border-slate-400"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <input
+                                name="phone"
+                                v-model="formData.phone"
+                                type="tel"
+                                placeholder="*Mobile phone number"
+                                class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light outline-none transition-colors focus:border-slate-400"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <select
+                                name="location"
+                                v-model="formData.location"
+                                class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light text-slate-600 outline-none transition-colors focus:border-slate-400"
+                                required
                             >
+                                <option value="" disabled selected>
+                                    - *LOCATION REGION -
+                                </option>
+                                <option value="PERTH">PERTH</option>
+                                <option value="PILBARA">PILBARA</option>
+                                <option value="SOUTH WEST REGION">
+                                    SOUTH WEST REGION
+                                </option>
+                                <option value="GOLDFIELDS ESPERANCE">
+                                    GOLDFIELDS ESPERANCE
+                                </option>
+                                <option value="PEEL">PEEL</option>
+                                <option value="WHEATBELT">WHEATBELT</option>
+                                <option value="MIDWEST">MIDWEST</option>
+                                <option value="KIMBERLEY">KIMBERLEY</option>
+                                <option value="GREAT SOUTHERN">
+                                    GREAT SOUTHERN
+                                </option>
+                                <option value="GASCOYNE">GASCOYNE</option>
+                                <option value="OTHER">OTHER</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <select
+                                name="reason"
+                                v-model="formData.reason"
+                                class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light text-slate-600 outline-none transition-colors focus:border-slate-400"
+                            >
+                                <option value="" disabled selected>
+                                    - Why do you want to fix your teeth? -
+                                </option>
+                                <option
+                                    value="I'm embarrassed to show my teeth or smile for photos"
+                                >
+                                    I'm embarrassed to show my teeth or smile
+                                    for photos
+                                </option>
+                                <option
+                                    value="I need to look my best for a special event coming up!"
+                                >
+                                    I need to look my best for a special event
+                                    coming up!
+                                </option>
+                                <option value="Other">
+                                    *Click here to add your own
+                                </option>
+                            </select>
+
+                            <input
+                                v-if="formData.reason === 'Other'"
+                                name="customReason"
+                                v-model="formData.customReason"
+                                type="text"
+                                placeholder="Please specify your reason..."
+                                class="mt-3 w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light outline-none transition-colors focus:border-slate-400"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <select
+                                name="hasPhotos"
+                                v-model="formData.hasPhotos"
+                                class="w-full rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light text-slate-600 outline-none transition-colors focus:border-slate-400"
+                                required
+                            >
+                                <option value="" disabled selected>
+                                    - *Have photos & files you wish to upload? -
+                                </option>
+                                <option
+                                    value="Yes (Required for Free Consultation)"
+                                >
+                                    Yes (Required for Free Consultation)
+                                </option>
+                                <option
+                                    value="Maybe later (Our team will contact you for more details)"
+                                >
+                                    Maybe later (Our team will contact you for
+                                    more details)
+                                </option>
+                            </select>
+                        </div>
+
+                        <div>
                             <textarea
+                                name="message"
                                 v-model="formData.message"
-                                rows="5"
-                                class="w-full resize-none rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light transition-colors outline-none focus:border-slate-400"
+                                rows="4"
+                                placeholder="Do you have any questions or somebody you'd like to thank for the referral?"
+                                class="w-full resize-none rounded-none border border-slate-200 bg-white px-5 py-4 text-sm font-light outline-none transition-colors focus:border-slate-400"
                             ></textarea>
                         </div>
-                        <Link href="/onlineform">
-                            <button
-                                type="submit"
-                                class="w-full bg-slate-900 py-5 text-xs font-bold tracking-widest text-white uppercase shadow-sm transition-colors duration-300 hover:bg-blue-900"
-                            >
-                                Schedule Your Consultation
-                            </button>
-                        </Link>
+
+                        <button
+                            type="submit"
+                            :disabled="isSubmitting"
+                            class="w-full bg-slate-900 py-5 text-xs font-bold uppercase tracking-widest text-white shadow-sm transition-colors duration-300 hover:bg-blue-900 disabled:opacity-50"
+                        >
+                            {{
+                                isSubmitting
+                                    ? 'Processing...'
+                                    : 'Submit to complete your registration!'
+                            }}
+                        </button>
                     </form>
                 </div>
             </div>
@@ -1254,7 +1316,7 @@
                             class="mb-6 h-7 object-contain opacity-90"
                         />
                         <p
-                            class="mb-8 max-w-sm leading-relaxed font-light text-slate-400"
+                            class="mb-8 max-w-sm font-light leading-relaxed text-slate-400"
                         >
                             A specialist orthodontic group delivering elite
                             patient outcomes through state-of-the-art diagnostic
@@ -1286,7 +1348,7 @@
                     </div>
                     <div class="md:col-span-3 md:col-start-7">
                         <h4
-                            class="mb-6 text-[10px] font-bold tracking-widest text-white uppercase"
+                            class="mb-6 text-[10px] font-bold uppercase tracking-widest text-white"
                         >
                             Navigation
                         </h4>
@@ -1337,7 +1399,7 @@
                     </div>
                     <div class="md:col-span-3">
                         <h4
-                            class="mb-6 text-[10px] font-bold tracking-widest text-white uppercase"
+                            class="mb-6 text-[10px] font-bold uppercase tracking-widest text-white"
                         >
                             Central Headquarters
                         </h4>
@@ -1387,7 +1449,8 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import emailjs from '@emailjs/browser';
+import { Head, Link } from '@inertiajs/vue3';
 import AOS from 'aos';
 import { ref, reactive, onMounted, onUnmounted, computed } from 'vue';
 import 'aos/dist/aos.css';
@@ -1405,6 +1468,7 @@ onUnmounted(() => {
     clearInterval(autoplayInterval);
     clearInterval(aboutAutoplayInterval);
 });
+
 // 1. Mobile Menu State Engine
 const isMobileMenuOpen = ref(false);
 const toggleMenu = () => (isMobileMenuOpen.value = !isMobileMenuOpen.value);
@@ -1445,40 +1509,55 @@ const reasons = [
     },
 ];
 
-// 4. Case Transformations Matrix Data
-const transformations = ref([
+const conditions = ref([
     {
         id: 1,
-        name: 'Emily',
-        age: '17',
-        treatment: 'Clear Aligners',
-        duration: '18 Months',
-        quote: 'I used to explicitly mask my profile alignment across media frameworks. Now, my expressive freedom has completely shifted structural dynamics.',
-        beforeImg: '/images/emily-before.jpg',
-        afterImg: '/images/emily-after.jpg',
+        name: 'Dental Crowding',
+        description:
+            'Occurs when there is insufficient space within the dental arch for teeth to erupt in proper alignment. This often leads to overlapping or rotated teeth.',
+        impacts: [
+            'Increases difficulty in maintaining adequate oral hygiene.',
+            'Higher risk of localized periodontal issues.',
+            'Uneven wear patterns on enamel surfaces.',
+        ],
+        image: '/images/conditions/crowding-diagram.jpg',
     },
     {
         id: 2,
-        name: 'Marcus',
-        age: '28',
-        treatment: 'Ceramic Braces',
-        duration: '24 Months',
-        quote: 'Operating within high-stakes corporate management parameters required minimal configuration visibility. Dr. Tai engineered an elite framework alignment.',
-        beforeImg: '/images/marcus-before.jpg',
-        afterImg: '/images/marcus-after.jpg',
+        name: 'Excessive Overjet (Overbite)',
+        description:
+            'Characterized by the upper anterior teeth extending significantly forward over the lower anterior teeth. It is frequently linked to skeletal discrepancies or early habits.',
+        impacts: [
+            'Increased vulnerability to trauma for upper front teeth.',
+            'Potential difficulties with functional biting or mastication.',
+            'Can influence speech articulation and lower lip posture.',
+        ],
+        image: '/images/conditions/overbite-diagram.jpg',
+    },
+    {
+        id: 3,
+        name: 'Anterior Crossbite (Underbite)',
+        description:
+            'Presents when the lower jaw extends beyond the upper jaw, causing the lower anterior teeth to occlude in front of the upper anterior teeth.',
+        impacts: [
+            'Can severely impact chewing and jaw joint (TMJ) function.',
+            'Asymmetric wear of tooth enamel.',
+            'Often requires early interceptive orthopedic correction.',
+        ],
+        image: '/images/conditions/underbite-diagram.jpg',
     },
 ]);
-const activeTransformIndex = ref(0);
-const activeTransformation = computed(
-    () => transformations.value[activeTransformIndex.value],
+const activeConditionIndex = ref(0);
+const activeCondition = computed(
+    () => conditions.value[activeConditionIndex.value],
 );
-const nextTransformation = () =>
-    (activeTransformIndex.value =
-        (activeTransformIndex.value + 1) % transformations.value.length);
-const prevTransformation = () =>
-    (activeTransformIndex.value =
-        (activeTransformIndex.value - 1 + transformations.value.length) %
-        transformations.value.length);
+const nextCondition = () =>
+    (activeConditionIndex.value =
+        (activeConditionIndex.value + 1) % conditions.value.length);
+const prevCondition = () =>
+    (activeConditionIndex.value =
+        (activeConditionIndex.value - 1 + conditions.value.length) %
+        conditions.value.length);
 
 // About Section Autoslide State Config
 const currentAboutIndex = ref(0);
@@ -1514,7 +1593,7 @@ const startAboutAutoplay = () => {
     aboutAutoplayInterval = setInterval(() => {
         currentAboutIndex.value =
             (currentAboutIndex.value + 1) % aboutImages.value.length;
-    }, 5000); // Slide transitions occur seamlessly every 5 seconds
+    }, 5000);
 };
 
 // 5. High-End Technology Infrastructures
@@ -1643,26 +1722,54 @@ const activeFaq = ref<number | null>(null);
 const toggleFaq = (index: number) =>
     (activeFaq.value = activeFaq.value === index ? null : index);
 
-// 10. Core Communication Form System
+// 10. Core Communication Form System with EmailJS Integration
 const isBookingSubmitted = ref(false);
-const formData: any = reactive({
-    firstName: '',
-    lastName: '',
+const isSubmitting = ref(false);
+const formRef = ref<HTMLFormElement | null>(null);
+
+const formData = reactive({
+    fullName: '',
     email: '',
     phone: '',
+    location: '',
+    reason: '',
+    customReason: '',
+    hasPhotos: '',
     message: '',
 });
-const submitBooking = () => {
-    setTimeout(() => (isBookingSubmitted.value = true), 500);
+
+const submitBooking = async () => {
+    if (!formRef.value) {
+        return;
+    }
+
+    isSubmitting.value = true;
+
+    try {
+        await emailjs.sendForm(
+            'service_17khmcd',
+            'template_p60lzio',
+            formRef.value,
+            'LvNdJ86JsuQQ2YBuh',
+        );
+        isBookingSubmitted.value = true;
+    } catch (error) {
+        console.error('EmailJS Error:', error);
+        alert(
+            'There was an issue processing your registration. Please try again.',
+        );
+    } finally {
+        isSubmitting.value = false;
+    }
 };
+
 const resetBooking = () => {
-    Object.keys(formData).forEach((key) => (formData[key] = ''));
+    Object.keys(formData).forEach((key) => ((formData as any)[key] = ''));
     isBookingSubmitted.value = false;
 };
 </script>
 
 <style scoped>
-/* Typography Architecture for Ultra-Luxury Experience */
 .font-display {
     font-family: 'Playfair Display', serif;
 }
@@ -1670,7 +1777,6 @@ const resetBooking = () => {
     font-family: 'Inter', sans-serif;
 }
 
-/* Clean UI Animations */
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1680,7 +1786,6 @@ const resetBooking = () => {
     opacity: 0;
 }
 
-/* Accordion Component Transition Rules */
 .accordion-enter-active,
 .accordion-leave-active {
     transition:

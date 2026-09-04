@@ -16,7 +16,8 @@ Route::get('/customers', [CustomerController::class, 'index'])->name('customers.
 Route::post('/customers', [CustomerController::class, 'store']);
 Route::put('/customers/{id}', [CustomerController::class, 'update']);
 Route::patch('/customers/{id}', [CustomerController::class, 'updateStatus']);
-
+// In routes/api.php
+Route::get('/payments', [PatientPaymentController::class, 'index']);
 
 Route::middleware(['throttle:5,1'])->group(function () {
     Route::post('/submit-payment-details', [PatientPaymentController::class, 'processPayment']);
