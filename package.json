@@ -37,6 +37,7 @@
         "vue-tsc": "^2.2.4"
     },
     "dependencies": {
+        "@emailjs/browser": "^4.4.1",
         "@fortawesome/fontawesome-svg-core": "^7.3.1",
         "@fortawesome/free-brands-svg-icons": "^7.3.1",
         "@fortawesome/free-regular-svg-icons": "^7.3.1",
@@ -44,6 +45,7 @@
         "@fortawesome/react-fontawesome": "^3.5.0",
         "@inertiajs/vite": "^3.0.0",
         "@inertiajs/vue3": "^3.0.0",
+        "@stripe/stripe-js": "^9.13.0",
         "@tailwindcss/vite": "^4.1.11",
         "@vitejs/plugin-vue": "^6.0.0",
         "aos": "^2.3.4",
