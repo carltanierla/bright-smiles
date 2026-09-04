@@ -1,38 +1,51 @@
-FROM php:8.4-fpm-alpine
+# --- Stage 1: Build the frontend assets ---
+FROM node:18-alpine AS frontend-builder
+WORKDIR /app
 
-# 1. Install system dependencies & Node.js safely
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy everything and build your assets (Vite, Webpack, Mix, etc.)
+COPY . .
+RUN npm run build
+
+# --- Stage 2: Build the production PHP app ---
+FROM php:8.2-apache
+WORKDIR /var/www/html
+
+# Install system utilities needed for Git/Composer
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
-    curl \
-    && curl -sL https://nodesource.com | bash - \
-    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. Enable Apache rewrite module (critical for frameworks like Laravel)
+# Enable Apache mod_rewrite for modern application routing
 RUN a2enmod rewrite
 
-# 3. Install Composer
+# Bring in Composer directly from its official image
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# 4. Set the working directory
-WORKDIR /var/www/html
-
-# 5. Copy your project code
+# Copy the application code
 COPY . .
 
-# 6. Run your install commands natively
+# Copy ONLY the compiled production assets from Stage 1
+# Note: Adjust "/app/public" if your framework builds to a different directory (e.g., "/app/dist")
+COPY --from=frontend-builder /app/public /var/www/html/public
+
+# Run Composer installation optimized for production
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --optimize-autoloader
-RUN npm install && npm run build
 
-# 7. Fix Apache document root permissions
+# Adjust file ownership so Apache can read and write to your directories
 RUN chown -R www-data:www-data /var/www/html
 
-# 8. Render injects a $PORT environment variable. Configure Apache to follow it.
+# Dynamically map Apache to the port assigned by Render
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
 EXPOSE 80
+
+FROM php:8.4-fpm-alpine
 
 # Added git, unzip, and openssh to support all Composer downloads
 RUN apk add --no-cache nginx supervisor mariadb-client postgresql-dev libpng-dev libjpeg-turbo-dev freetype-dev zip libzip-dev git unzip openssh
